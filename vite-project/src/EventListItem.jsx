@@ -1,9 +1,8 @@
 import React from 'react';
-//import moment from 'moment';
 import {Link} from 'react-router-dom';
 import { faCalendarAlt, faClock, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-//import { history } from '../routers/AppRouter';
+
 
 export const EventListItem = ({ eventName="App dev", description="make an app", userImageUrl, time, userHandle="ansh", imageUrl, startTime="10:00", endTime="11:00",eventId=1, location, startDate="1-11-11", endDate="1-11-11", fee, id=1, venues }) => (
     <div className={"list-card"+ " my-blogs__list-card" }>
