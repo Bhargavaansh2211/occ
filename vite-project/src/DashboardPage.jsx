@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "./header";
-
+import Footer from "./Footer";
 const DashboardPage = () => {
   const propsToPass = {
     eventName: "Foss Weekend",
@@ -62,6 +62,7 @@ const DashboardPage = () => {
           </button>
         </Link>
       </div>
+      <Footer/>
     </div>
   );
 };

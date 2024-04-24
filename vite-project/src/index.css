@@ -1,15 +1,7 @@
-.box-layout {
-  font-family: 'Roboto', sans-serif;
-  background: white;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-areas: "logo logo login";
-  opacity: 0.95;
-}
-
+/*signin.css*/
+ @tailwind base;
+@tailwind components;
+@tailwind utilities;
 .box-layout a {
   color: #f76c6c;
   text-decoration: underline;
@@ -44,6 +36,18 @@
   text-align: center;
   width: 40vw;
   height: 100vh;
+}
+
+.box-layout {
+  font-family: 'Roboto', sans-serif;
+  background: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-areas: "logo logo login";
+  opacity: 0.95;
 }
 
 @media screen and (max-width: 60rem) {
@@ -141,16 +145,7 @@
   font-size: 1.7rem;
 }
 
-h5 {
-  margin: 1rem;
-  color: #edc7bc;
-  font-weight: 200;
-  font-size: 1.5rem;
-}
 
-.margin-bottom {
-  margin-bottom: 3rem;
-}
 
 .box-layout input {
   border: 0;
@@ -214,21 +209,6 @@ h5 {
   color: #eb6e80;
 }
 
-.box-layout__wrap-login {
-  width: 960px;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 177px 130px 33px 95px;
-}
-
 .box-layout__login-form-title {
   font-size: 24px;
   color: #333;
@@ -239,12 +219,6 @@ h5 {
   padding-bottom: 54px;
 }
 
-* {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
 
 html {
   font-size: 62.5%;
@@ -1683,19 +1657,17 @@ input[type="radio"]:checked~label[title="Recent"]::after {
   box-shadow: 0 0 10px 0 #eb6e80 inset, 0 0 10px 2px #eb6e80;
 }
 
-/* Override Time Picker Icon */
 .react-time-picker__wrapper .react-time-picker__button {
   display: none;
 }
 
 
-/* Time Picker */
+
 .react-time-picker__inputGroup__input.react-time-picker__inputGroup__hour,
 .react-time-picker__inputGroup__input.react-time-picker__inputGroup__minute,
 .react-time-picker__inputGroup__input.react-time-picker__inputGroup__amPm {
 
   font-size: 1.6rem;
-  /* Adjust the font size */
   width: 5rem !important;
   height: fit-content !important;
 
