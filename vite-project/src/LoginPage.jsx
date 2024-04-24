@@ -24,10 +24,8 @@ const LoginPage = () => {
     
     
     return(
-        <div className="box-layout">
-            <div className="box-layout__logo-outside ">
-            </div>
-             <div className="spinner"></div>
+        <div className="box-layout" style={{marginLeft:'-9px', marginBottom:'-15px'}}>
+            <div className="box-layout__logo-outside "></div>
             <div className="box-layout__box ">
             <div className="box-layout__logo-inside">
                     <Tilt className="Tilt" options={{ max : 25 }} >
@@ -51,11 +49,7 @@ const LoginPage = () => {
                         />
                        <Link to='/dashboard'> <button className="button button-primary">Login</button></Link>
                       
-                    </form>
-                    
-                    
-                    
-                    
+                    </form> 
                     <div className="box-layout__question">
                     <label >no account? </label><Link to='/signup'>Sign Up</Link>
                     </div>

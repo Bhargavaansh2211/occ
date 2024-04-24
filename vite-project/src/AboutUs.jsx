@@ -34,7 +34,7 @@ const AboutUs = () => {
           <h1 className="logohe">Occasionly</h1>
         </div>
         <div className="text-container">
-          <h1>About Us</h1>
+          <h1 style={{textAlign:'center'}}>About Us</h1>
           <p>
             <h2>What we Are?</h2>Welcome to Occasionly, your go-to platform for
             effortlessly managing and commemorating college events. Our mission
@@ -57,11 +57,8 @@ const AboutUs = () => {
         </div>
       </div>
       <div>
-        <br />
-        <br />
-        <br />
-      <h2 style={{marginLeft:'70px'}}>Our Contributers</h2>
-      <div className="event-list-item-container card">
+      <h1 style={{marginLeft:'70px', marginTop:'80px'}}>Our Contributors</h1>
+      <div className="event-list-item-container card1">
         <Card {...cardProps1}/>
         <Card {...cardProps2}/>
         <Card {...cardProps3}/>

@@ -136,7 +136,7 @@ const EventForm = (props) => {
             id="imageChange"
             onChange={onImageChange}
           />
-          <button className="btn third" onClick={handleEditPicture}>
+          <button className="btn third" onClick={handleEditPicture} style={{color:'black'}}>
             {props.event ? "edit image" : "add image"}
           </button>
         </div>

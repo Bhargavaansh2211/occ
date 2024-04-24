@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "./header";
-import Footer from "./Footer";
 const DashboardPage = () => {
   const propsToPass = {
     eventName: "Foss Weekend",
@@ -48,12 +47,12 @@ const DashboardPage = () => {
       <EventFilters />
       <div className="card">
         <h1 className="headevent">Upcoming Events</h1>
-        <div className="blog-card event-list-item-container">
+        <div className="blog-card event-list-item-container" style={{marginTop:'30px'}}>
           <EventListItem {...propsToPass} />
           <EventListItem {...propsToPass1} />
         </div>
         <h1 className="headevent">Past Events</h1>
-        <div className="blog-card event-list-item-container">
+        <div className="blog-card event-list-item-container" style={{marginTop:'20px'}}>
           <EventListItem {...propsToPassPst} />
         </div>
         <Link to="/add" className="button-floating">
@@ -62,7 +61,6 @@ const DashboardPage = () => {
           </button>
         </Link>
       </div>
-      <Footer/>
     </div>
   );
 };

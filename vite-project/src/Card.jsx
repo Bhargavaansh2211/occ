@@ -3,7 +3,7 @@ import { Button, Card } from 'react-bootstrap';
 
 function Cardh(props) {
   return (
-    <Card style={{ width: '25rem', boxShadow:'1px 1px 3px black',backgroundColor:'#292B2C', height:'auto'}}>
+    <Card style={{ width: '25rem', boxShadow:'1px 1px 3px black',backgroundColor:'#292B2C', height:'auto',borderRadius:'7px', padding:'5px'}}>
       <div className="img-container" style={{ display: 'flex', justifyContent: 'center' }}>
         <Card.Img 
           variant="top" 

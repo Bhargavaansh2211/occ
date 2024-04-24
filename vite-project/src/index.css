@@ -1,7 +1,3 @@
-/*signin.css*/
- @tailwind base;
-@tailwind components;
-@tailwind utilities;
 .box-layout a {
   color: #f76c6c;
   text-decoration: underline;
@@ -14,7 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #d4eaea;
+  background: #0b2646;
   padding: 3.2rem 1.6rem;
   text-align: center;
   width: 38vw;
@@ -31,7 +27,7 @@
 }
 
 .box-layout__signup-box {
-  background: #1d2328;
+  background: #0b2646;
   padding: 3.2rem 1.6rem;
   text-align: center;
   width: 40vw;
@@ -230,6 +226,9 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.6rem;
   line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  top: -8px;
 }
 
 button {
@@ -576,14 +575,11 @@ a:visited {
 }
 
 .header {
-  background: #2084ff;
-  position: sticky;
-  top: 0;
+  background: #0b2646;
+  margin-left: -10px;
   height: 75px;
-  width: 100%;
-  z-index: 100;
+  width: 110%;
   border-bottom: 1px;
-  border-radius: 10px;
 }
 
 .header__content {
@@ -592,7 +588,7 @@ a:visited {
   justify-content: center;
   padding: 0.5rem 0;
   margin: 0 3rem 0 0;
-  
+
 }
 
 @media screen and (max-width: 60rem) {
@@ -610,6 +606,7 @@ a:visited {
 .header__title {
   display: flex;
   margin-top: 7px;
+  font-size: 100%;
   color: #eef6f6;
   text-decoration: none;
 }
@@ -690,7 +687,7 @@ a>button {
 @media (max-width: 60rem) {
   #desktop-menu {
     display: none;
-    margin-top:-100px;
+    margin-top: -100px;
   }
 }
 
@@ -1395,9 +1392,10 @@ input[type="radio"]:checked~label[title="Recent"]::after {
   justify-content: center;
   align-items: center;
   outline: none;
+  padding-top: 30px;
   margin: 3.8rem 3rem 0 3rem;
   font-size: 1.8rem;
-  color: #6f6f6f;
+  color: black;
   font-weight: 400;
 }
 
@@ -1459,9 +1457,9 @@ input[type="radio"]:checked~label[title="Recent"]::after {
   height: 5rem;
   width: 70rem;
   font-size: 2.3rem;
-  color: white;
+  color: black;
   font-weight: 700;
-  background: #3d4955;
+  background: white;
   margin-bottom: 3rem;
 }
 
@@ -1487,7 +1485,7 @@ input[type="radio"]:checked~label[title="Recent"]::after {
   outline: none;
   height: 20rem;
   width: 70rem;
-  background: #3d4955;
+  background: white;
   font-size: 2.3rem;
   color: white;
   font-weight: 400;
@@ -1536,8 +1534,8 @@ input[type="radio"]:checked~label[title="Recent"]::after {
   outline: none;
   border: none;
   text-align: center;
-  background: #3d4955;
-  color: white;
+  background: white;
+  color: black;
 }
 
 .form-venue input:focus,
@@ -1569,8 +1567,8 @@ input[type="radio"]:checked~label[title="Recent"]::after {
   outline: none;
   border: none;
   text-align: center;
-  background: #3d4955;
-  color: white;
+  background: white;
+  color: black;
   margin-bottom: 2rem;
 }
 
@@ -1611,13 +1609,13 @@ input[type="radio"]:checked~label[title="Recent"]::after {
 .react-time-picker__inputGroup {
   display: flex;
   align-items: center;
-  background-color: #3d4955;
+  background-color: white;
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
 
 .react-time-picker__inputGroup__input {
-  color: white;
+  color: black;
   border: none;
   background-color: transparent;
   outline: none;
@@ -1648,8 +1646,8 @@ input[type="radio"]:checked~label[title="Recent"]::after {
   outline: none;
   border: none;
   text-align: center;
-  background: #3d4955;
-  color: white;
+  background: white;
+  color: black;
 }
 
 .react-datepicker__input-container input:focus {
@@ -1690,19 +1688,19 @@ input[type="radio"]:checked~label[title="Recent"]::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  width:80%;
-  height:auto;
+  width: 80%;
+  height: auto;
   box-shadow: 3px 3px 7px black;
   position: relative;
   background-color: whitesmoke;
   border-radius: 7px;
-  top:50px;
-  left:150px;
+  top: 50px;
+  left: 150px;
 }
 
 .image-container {
   width: 30%;
-  height:50%;
+  height: 50%;
 }
 
 .image-container img {
@@ -1714,13 +1712,13 @@ input[type="radio"]:checked~label[title="Recent"]::after {
   width: 60%;
   text-align: center;
   position: relative;
-  top:auto;
+  top: auto;
   margin-right: 40px;
   margin-left: 50px;
   text-align: left;
 }
 
-.text-container h2{
+.text-container h2 {
   position: relative;
 }
 
@@ -1732,17 +1730,18 @@ input[type="radio"]:checked~label[title="Recent"]::after {
 .text-container p {
   font-weight: bold;
   font-size: 110%;
-  
+
 }
-.logohe{
-  font-size:250%;
-  top:-50px;
-  left:60px;
+
+.logohe {
+  font-size: 250%;
+  top: -50px;
+  left: 60px;
   position: relative;
 }
 
-.card{
-  margin:60px;
+.card1 {
+  margin: 60px;
   margin-top: 30px;
   justify-content: space-between;
 }
