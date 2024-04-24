@@ -1,5 +1,7 @@
 /*signin.css*/
-
+ @tailwind base;
+@tailwind components;
+@tailwind utilities;
 .box-layout a {
   color: #f76c6c;
   text-decoration: underline;
