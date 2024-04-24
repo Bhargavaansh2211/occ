@@ -5,13 +5,7 @@ import { faPlus, faBlog, faBell, faCommentAlt, faUserCircle, faSignOutAlt, faL }
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = (props) => {
-    const [toggle, setToggle] = useState(false);
-    const [display, setDisplay] = useState(false);
-
-    const onClick = () => {
-        setToggle(!toggle)
-    }
-
+  
  
     const logout = () => {
        
@@ -39,7 +33,7 @@ const Header = (props) => {
                                     <div className="button-dropdown">
                                         <button className="button-dropbtn"><FontAwesomeIcon icon={faUserCircle} size="lg" /></button>
                                         <div className="button-dropdown__content">
-                                            <div><Link to="../../me"><button className="button-logout">ansh</button></Link></div>
+                                            <div><button className="button-logout">ansh</button></div>
                                             <div><button onClick={logout} className="button-logout">Logout</button></div>
                                         </div>
                                     </div>
