@@ -27,7 +27,7 @@ export const EventListItem = (props) => {
             <div className="list-card__content">
               <Link
                 className="list-card__body-title"
-                to={`/event/${props?.eventId}`}
+                to="#"
               >
                 {props?.eventName}
                 <div>
