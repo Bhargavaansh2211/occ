@@ -16,7 +16,7 @@ export const EventListItem = (props) => {
     if (showRegistrationMessage) {
       timeout = setTimeout(() => {
         setShowRegistrationMessage(false);
-      }, 1200);
+      }, 4000);
     }
     return () => clearTimeout(timeout);
   }, [showRegistrationMessage]);
