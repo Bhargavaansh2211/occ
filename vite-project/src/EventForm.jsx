@@ -6,6 +6,8 @@ import TimePicker from "react-time-picker";
 import Header from "./header";
 
 const EventForm = (props) => {
+  const [msg,setmsg]=useState("Please wait...")
+  const [bg,setbg]=useState("rgba(0, 128, 0, 0.8)")
   const [eventName, onEventNameChange] = useState(
     props.event ? props.event.eventName : ""
   );
@@ -86,8 +88,8 @@ const EventForm = (props) => {
     if(showPostMessage){
       timeout=setTimeout(()=>{
         setShowPostMessage(false);
-      },1200);
-      console.log("POstmme")
+      },4000);
+      console.log("Post me")
 
     } 
     return ()=>clearTimeout(timeout);
@@ -126,18 +128,18 @@ const EventForm = (props) => {
       console.log("start_time", endTime.toString().slice(16,21))
   
       try {
-        const response = await axios.post(
-          'http://localhost:8080/event/create',
-          formData
-        );
-        console.log(response.data); 
-       
+        const response = await axios.post('http://localhost:8080/event/create', formData);
+        setmsg("Event added successfully!");
+        console.log("Event added successfully!");
+        console.log(response.data);
         setisSubmitted(!setisSubmitted);
         setShowPostMessage(true);
       } catch (error) {
         console.error('Error creating event:', error);
-       
+        setmsg("Error adding event: " + error.message);
+        setbg("red")
       }
+      
     }
   };
   
@@ -242,9 +244,9 @@ const EventForm = (props) => {
               Post
             </button>
             {isSubmitted && showPostMessage &&(
-              <h1 className="disp">
-                Event is add.
-              </h1>
+              <div className="add-event" style={{backgroundColor:bg}}>
+                {msg}
+              </div>
             )}
 
           </div>

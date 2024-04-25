@@ -1769,6 +1769,45 @@ input[type="radio"]:checked~label[title="Recent"]::after {
   display:inline-block;
 }
 
+.add-event {
+  position: absolute;
+  top: 700px;
+  left:1000px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 128, 0, 0.8); /* Green color with some transparency */
+  padding: 10px 20px;
+  color: white;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.add-eventsign {
+  position: absolute;
+  top: 706px;
+  left:1250px;
+  width: 20%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 128, 0, 0.8); /* Green color with some transparency */
+  padding: 10px 20px;
+  color: white;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.add-eventlog {
+  position: absolute;
+  top: 666px;
+  left:1250px;
+  width: 25%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 128, 0, 0.8); /* Green color with some transparency */
+  padding: 10px 20px;
+  color: white;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+
 .card-container {
   width: 25rem;
   box-shadow: 1px 1px 3px black;

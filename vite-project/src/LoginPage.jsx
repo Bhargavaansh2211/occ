@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import isEmail from "validator/lib/isEmail";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -9,6 +9,23 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  const [msg, setmsg] = useState("Please wait...");
+  const [bg, setbg] = useState("rgba(0, 128, 0, 0.8)");
+  const [isSubmitted, setisSubmitted] = useState(false);
+  const [showPostMessage, setShowPostMessage] = useState(false);
+  useEffect(() => {
+    let timeout;
+    if (showPostMessage) {
+      timeout = setTimeout(() => {
+        setShowPostMessage(false);
+      }, 4000);
+    }
+    return () => clearTimeout(timeout);
+  }, [showPostMessage]);
+  const togglePost = () => {
+    setisSubmitted(!isSubmitted);
+    setShowPostMessage(true);
+  };
 
   const onStartLogin = async (e) => {
     e.preventDefault();
@@ -28,7 +45,8 @@ const LoginPage = () => {
         }
       } catch (error) {
         console.error("Error logging in:", error);
-        alert("Failed to login. Please check your credentials.");
+        setbg("red")
+        setmsg("Invalid Credentials !")
       }
     } else {
       alert("Invalid email format.");
@@ -65,7 +83,14 @@ const LoginPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="password"
             />
-            <button className="button button-primary">Login</button>
+            <button className="button button-primary" onClick={togglePost}>
+              Login
+            </button>
+            {isSubmitted && showPostMessage && (
+              <div className="add-eventlog" style={{ backgroundColor: bg }}>
+                {msg}
+              </div>
+            )}
           </form>
           <div className="box-layout__question">
             <label>Don't have an account? </label>

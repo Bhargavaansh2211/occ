@@ -79,7 +79,7 @@ export const EventListItem = (props) => {
                 ? "Unregister"
                 : "Register"}
             </button>
-            {(isRegistered) && showRegistrationMessage && (
+            {((isRegistered) && showRegistrationMessage) && (
               <div className="registration-message">
                 Successfully registered for the event!
               </div>
