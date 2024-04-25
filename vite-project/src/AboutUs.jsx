@@ -3,7 +3,7 @@ import Header from "./header";
 import Card from "./Card";
 
 const cardProps1 = {
-  card_image:"/images/aryan1.jpg",
+  card_image:"/images/aryan.png",
   card_name:"Aryan Sharma",
   git_id:"aryansharma123"
 };

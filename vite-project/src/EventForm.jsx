@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import DatePicker from "react-datepicker";
+import axios from 'axios';
 import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from "react-time-picker";
 import Header from "./header";
@@ -32,7 +33,7 @@ const EventForm = (props) => {
   const [fee, onFeeChange] = useState(props.event ? props.event.fee : "");
   const [error, onErrorChange] = useState("");
   const [image, onImage] = useState();
-  const [multiDayEvent, onMultiDayEventChange] = useState("");
+ 
   const formData = new FormData();
 
   const onTitleChange = (e) => {
@@ -75,11 +76,28 @@ const EventForm = (props) => {
     console.log(!!image);
   };
 
-  const isMultiDayEvent = () => {
-    onMultiDayEventChange(!multiDayEvent);
-  };
+ 
 
-  const onSubmit = (e) => {
+  const [isSubmitted,setisSubmitted]=useState(false);
+  const [showPostMessage,setShowPostMessage]=useState(false);
+
+  useEffect(()=>{
+    let timeout;
+    if(showPostMessage){
+      timeout=setTimeout(()=>{
+        setShowPostMessage(false);
+      },1200);
+      console.log("POstmme")
+
+    } 
+    return ()=>clearTimeout(timeout);
+  },[showPostMessage]);
+  const togglePost=()=>{
+    setisSubmitted(!isSubmitted);
+    setShowPostMessage(true);
+  }
+
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (!eventName) {
       onErrorChange("Please provide the Event name.");
@@ -91,30 +109,38 @@ const EventForm = (props) => {
       onErrorChange("Please provide the fee.");
     } else {
       onErrorChange("");
-      const check = {
-        eventName,
-        description,
-        startDate: startDate.toLocaleDateString(),
-        endDate: endDate.toLocaleDateString(),
-        startTime: startTime.toLocaleTimeString(),
-        endTime: endTime.toLocaleTimeString(),
-        fee,
-        location,
-      };
-      formData.append("eventName", eventName);
+      formData.append("title", eventName);
       formData.append("description", description);
-      formData.append("startDate", startDate.toLocaleDateString());
-      formData.append("endDate", endDate.toLocaleDateString());
-      formData.append("startTime", startTime.toLocaleTimeString());
-      formData.append("endTime", endTime.toLocaleTimeString());
-      formData.append("fee", fee);
-      formData.append("location", location);
-      console.log(!!image);
-      !!image && formData.append("image", image, image.name);
-      console.log(check);
-      props.onSubmit(formData);
+      formData.append("venue", location);
+      formData.append("fees", fee);
+      formData.append("start_time", startTime);
+      formData.append("end_time", endTime);
+      formData.append("start_date", startDate.toISOString().slice(0, 10));
+      formData.append("end_date", endDate.toISOString().slice(0, 10));
+      formData.append("image", image);
+  
+      console.log("FormData:", formData); 
+      console.log("image:", image); 
+      console.log("startDate:", startDate); 
+      console.log("endDate:", endDate); 
+      console.log("start_time", endTime.toString().slice(16,21))
+  
+      try {
+        const response = await axios.post(
+          'http://localhost:8080/event/create',
+          formData
+        );
+        console.log(response.data); 
+       
+        setisSubmitted(!setisSubmitted);
+        setShowPostMessage(true);
+      } catch (error) {
+        console.error('Error creating event:', error);
+       
+      }
     }
   };
+  
   return (
     <div>
       <Header />
@@ -184,10 +210,7 @@ const EventForm = (props) => {
                 </div>
               </div>
               <div className="form-content__checkbox">
-                <div>
-                  <input type="checkbox" onClick={isMultiDayEvent} />
-                  <label>Multi-day Event?</label>
-                </div>
+                
                 <div className="form-content__checkbox-calendar">
                   <DatePicker
                     selected={startDate}
@@ -195,7 +218,7 @@ const EventForm = (props) => {
                     selectsStart
                     startDate={startDate}
                     endDate={endDate}
-                    dateFormat="dd/MM/yyyy"
+                    dateFormat="yyyy/MM/dd"
                     placeholderText="Start Date"
                   />
                   <DatePicker
@@ -206,6 +229,7 @@ const EventForm = (props) => {
                     endDate={endDate}
                     dateFormat="dd/MM/yyyy"
                     placeholderText="End Date"
+                    id="startdate"
                   />
                 </div>
               </div>
@@ -213,9 +237,16 @@ const EventForm = (props) => {
             <button
               type="submit"
               className="button button-primary button-submit"
+              onClick={togglePost}
             >
               Post
             </button>
+            {isSubmitted && showPostMessage &&(
+              <h1 className="disp">
+                Event is add.
+              </h1>
+            )}
+
           </div>
         </form>
       </div>
