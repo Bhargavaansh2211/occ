@@ -45,12 +45,10 @@ export const SignupPage = () => {
           "http://localhost:8080/auth/register",
           credentials
         );
-        alert(
-          "Verification Link has been sent successfully to your email. Please verify it and then login"
-        );
+        
         setMsg("Signed Up Successfully");
         console.log("signup success");
-        setisSubmitted(!setisSubmitted);
+        //setisSubmitted(!setisSubmitted);
         setShowPostMessage(true);
       } catch (error) {
         console.error("Error signing up:", error);
@@ -113,7 +111,7 @@ export const SignupPage = () => {
             />
 
             <button className="button button-primary " onClick={togglePost}>Sign Up</button>
-            {(isSubmitted && showPostMessage )&&(
+            {(showPostMessage )&&(
               <div className="add-eventsign" style={{backgroundColor:bg}}>
                 {msg}
               </div>

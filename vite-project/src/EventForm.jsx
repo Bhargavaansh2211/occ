@@ -132,7 +132,8 @@ const EventForm = (props) => {
         setmsg("Event added successfully!");
         console.log("Event added successfully!");
         console.log(response.data);
-        setisSubmitted(!setisSubmitted);
+        //setisSubmitted(!setisSubmitted);
+        setbg("rgba(0, 128, 0, 0.8)")
         setShowPostMessage(true);
       } catch (error) {
         console.error('Error creating event:', error);
@@ -243,7 +244,7 @@ const EventForm = (props) => {
             >
               Post
             </button>
-            {isSubmitted && showPostMessage &&(
+            { showPostMessage &&(
               <div className="add-event" style={{backgroundColor:bg}}>
                 {msg}
               </div>

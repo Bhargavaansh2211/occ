@@ -1774,7 +1774,7 @@ input[type="radio"]:checked~label[title="Recent"]::after {
   top: 700px;
   left:1000px;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 128, 0, 0.8); /* Green color with some transparency */
+  background-color: rgba(0, 128, 0, 0.8); 
   padding: 10px 20px;
   color: white;
   font-size: 18px;
@@ -1783,11 +1783,11 @@ input[type="radio"]:checked~label[title="Recent"]::after {
 
 .add-eventsign {
   position: absolute;
-  top: 706px;
-  left:1250px;
+  top: 95%;
+  left:85%;
   width: 20%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 128, 0, 0.8); /* Green color with some transparency */
+  background-color: rgba(0, 128, 0, 0.8); 
   padding: 10px 20px;
   color: white;
   font-size: 18px;
