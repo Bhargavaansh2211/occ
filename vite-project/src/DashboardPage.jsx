@@ -15,7 +15,8 @@ const DashboardPage = () => {
     startDate: "24-04-2024",
     endDate: "26-04-2024",
     venue: "Room 120, IIIT Lucknow",
-    image:"/images/img5.jpeg"
+    image:"/images/img5.jpeg",
+    status:1
   };
   const propsToPass1 = {
     eventName: "HackOFiesta",
@@ -26,7 +27,8 @@ const DashboardPage = () => {
     startDate: "29-04-2024",
     endDate: "01-05-2024",
     venue: "Admin Block, IIIT Lucknow",
-    image:"/images/hof.png"
+    image:"/images/hof.png",
+    status:1
   };
 
   const propsToPassPst = {
@@ -38,7 +40,8 @@ const DashboardPage = () => {
     startDate: "21-03-2024",
     endDate: "27-03-2024",
     venue: "Football Ground, IIIT Lucknow",
-    image:"/images/infinito.jpeg"
+    image:"/images/infinito.jpeg",
+    status:0
   };
 
   return (
