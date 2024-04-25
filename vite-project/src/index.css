@@ -1707,6 +1707,7 @@ input[type="radio"]:checked~label[title="Recent"]::after {
 
 }
 
+
 .logohe {
   font-size: 250%;
   top: -50px;
@@ -1715,9 +1716,10 @@ input[type="radio"]:checked~label[title="Recent"]::after {
 }
 
 .card1 {
+  display: flex;
   margin: 60px;
   margin-top: 30px;
-  justify-content: space-between;
+  justify-content:space-around;
 }
 
 .butreg {
@@ -1764,5 +1766,44 @@ input[type="radio"]:checked~label[title="Recent"]::after {
   border-radius: 5px;
   z-index: 999;
   display: inline-block;
+}
+
+.card-container {
+  width: 25rem;
+  box-shadow: 1px 1px 3px black;
+  background-color: #292B2C;
+  height: auto;
+  border-radius: 7px;
+  padding: 5px;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+}
+
+.img_contri {
+  width: 150px;
+  height: 170px;
+  border-radius: 10px;
+  align-content: center;
+  top: 10px;
+  position: relative;
+}
+
+.card-body {
+  color: white;
+  top: 20px;
+  position: relative;
+  text-align: center;
+}
+
+.card-button {
+  background-color: #169CF3;
+  border-color: #169CF3;
+  color: white;
+  top: -10px;
+  position: relative;
+  left: 40px;
 }
 
