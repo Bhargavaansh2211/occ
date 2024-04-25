@@ -1114,7 +1114,7 @@ input[type="radio"]:checked~label[title="Recent"]::after {
 }
 
 .event-list-item-container {
-  display: flex;
+  display:inline-block;
   position: relative;
   top: -25px;
   justify-content: normal;
@@ -1728,7 +1728,7 @@ input[type="radio"]:checked~label[title="Recent"]::after {
   border-radius: 5px;
   cursor: pointer;
   top:-50px;
-  left: -35px;
+  left: -55px;
   position: relative;
 }
 
@@ -1740,12 +1740,29 @@ input[type="radio"]:checked~label[title="Recent"]::after {
   border-radius: 5px;
   cursor: pointer;
   top:-50px;
-  left: -35px;
+  left: -55px;
   position: relative;
 }
 
 .butreg:disabled, .butunreg:disabled {
   background-color: grey;
   cursor: not-allowed;
+}
+
+.event-list-item-container {
+  position: relative;
+}
+
+.registration-message {
+  position: absolute;
+  top:-30px;
+  left: -140px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 128, 0, 0.8); /* Green background color */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding */
+  border-radius: 5px;
+  z-index: 999;
+  display: inline-block;
 }
 

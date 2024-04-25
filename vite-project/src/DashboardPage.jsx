@@ -12,8 +12,8 @@ const DashboardPage = () => {
     startTime: "10:00",
     endTime: "17:00",
     eventId: 1,
-    startDate: "24-04-2024",
-    endDate: "26-04-2024",
+    startDate: "27-04-2024",
+    endDate: "28-04-2024",
     venue: "Room 120, IIIT Lucknow",
     image:"/images/img5.jpeg",
     status:1
@@ -44,6 +44,31 @@ const DashboardPage = () => {
     status:0
   };
 
+  const propsToPassPst1 = {
+    eventName: "Equinox",
+    description:"Join us for 'Equinox', an Techno-Cultural event organized by IIIT Lucknow, where developers , hackers, coding enthusiasts converge to celebrate a diverse array of their knowledge, skills, networks. Experience the thrill of competition, and students as participants showcase their skills. From Machine Learning, App and Web Dev and Infosec, 'Equinox' offers a platform for developers of all levels.",
+    startTime: "08:00",
+    endTime: "16:00",
+    eventId: 1,
+    startDate: "01-02-2024",
+    endDate: "07-02-2024",
+    venue: "Reception, IIIT Lucknow",
+    image:"/images/equinox.jpg",
+    status:0
+  };
+  const propsToPassPst2 = {
+    eventName: "Enspire",
+    description:"Join us for 'Enspire,' an electrifying event organized by IIIT Lucknow, where sports enthusiasts converge to celebrate a diverse array of athletic competitions, including esports. Experience the thrill of competition, and sportsmanship as participants showcase their skills. From traditional sports to cutting-edge esports, 'Infinito' offers a platform for players of all levels.",
+    startTime: "08:00",
+    endTime: "16:00",
+    eventId: 1,
+    startDate: "21-01-2024",
+    endDate: "23-01-2024",
+    venue: "Near Wifi Garden, IIIT Lucknow",
+    image:"/images/enspire.png",
+    status:0
+  };
+
   return (
     <div>
       <Header />
@@ -56,7 +81,9 @@ const DashboardPage = () => {
         </div>
         <h1 className="headevent">Past Events</h1>
         <div className="blog-card event-list-item-container" style={{marginTop:'20px'}}>
-          <EventListItem {...propsToPassPst} />
+          <EventListItem {...propsToPassPst}/>
+          <EventListItem {...propsToPassPst1}/>
+          <EventListItem {...propsToPassPst2} />
         </div>
         <Link to="/add" className="button-floating">
           <button>

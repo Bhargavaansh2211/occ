@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   faCalendarAlt,
@@ -9,9 +9,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const EventListItem = (props) => {
   const [isRegistered, setIsRegistered] = useState(false);
+  const [showRegistrationMessage, setShowRegistrationMessage] = useState(false);
+
+  useEffect(() => {
+    let timeout;
+    if (showRegistrationMessage) {
+      timeout = setTimeout(() => {
+        setShowRegistrationMessage(false);
+      }, 1200);
+    }
+    return () => clearTimeout(timeout);
+  }, [showRegistrationMessage]);
 
   const toggleRegistration = () => {
     setIsRegistered(!isRegistered);
+    setShowRegistrationMessage(true);
   };
 
   return (
@@ -61,8 +73,17 @@ export const EventListItem = (props) => {
               onClick={toggleRegistration}
               disabled={props?.status === 0}
             >
-              {props?.status === 0 ? "Event Over" : isRegistered ? "Unregister" : "Register"}
+              {props?.status === 0
+                ? "Event Over"
+                : isRegistered
+                ? "Unregister"
+                : "Register"}
             </button>
+            {(isRegistered) && showRegistrationMessage && (
+              <div className="registration-message">
+                Successfully registered for the event!
+              </div>
+            )}
           </div>
         </div>
       </div>
