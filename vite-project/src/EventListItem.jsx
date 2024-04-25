@@ -20,18 +20,15 @@ export const EventListItem = (props) => {
         <div className={"list-card" + " my-blogs__list-card"}>
           <div className="list-card__body">
             <div className="list-card__image">
-              {(
-                <img src={props?.image} alt="" />
-              )}
+              {<img src={props?.image} alt="" />}
             </div>
             <div className="list-card__content">
-              <Link
-                className="list-card__body-title"
-                to="#"
-              >
+              <Link className="list-card__body-title" to="#">
                 {props?.eventName}
                 <div>
-                  <p className="list-card__content-text">{props?.description}</p>
+                  <p className="list-card__content-text">
+                    {props?.description}
+                  </p>
                 </div>
               </Link>
             </div>
@@ -46,8 +43,10 @@ export const EventListItem = (props) => {
                 <h6>
                   <FontAwesomeIcon icon={faCalendarAlt} />
                   {" " +
-                    (props?.startDate?.split(",")[0] || '') +
-                    (props?.endDate !== props?.startDate ? " - " + (props?.endDate?.split(",")[0] || '') : "")}
+                    (props?.startDate?.split(",")[0] || "") +
+                    (props?.endDate !== props?.startDate
+                      ? " - " + (props?.endDate?.split(",")[0] || "")
+                      : "")}
                 </h6>
               </div>
               <div className="ven">
@@ -60,8 +59,9 @@ export const EventListItem = (props) => {
             <button
               className={isRegistered ? "butunreg" : "butreg"}
               onClick={toggleRegistration}
+              disabled={props?.status === 0}
             >
-              {isRegistered ? "Unregister" : "Register"}
+              {props?.status === 0 ? "Event Over" : isRegistered ? "Unregister" : "Register"}
             </button>
           </div>
         </div>
