@@ -40,13 +40,26 @@ const LoginPage = () => {
         );
         if (response.status === 200) {
           console.log(response.data);
-          history.push("/dashboard");
           localStorage.setItem("token", response.data);
+
+          const userResponse = await axios.get(
+            `http://localhost:8080/user/getuser/${email}`
+          );
+
+          if (userResponse.status === 200) {
+            const userData = userResponse.data;
+            console.log("User data:", userData);
+            localStorage.setItem("userID", userData.userId);
+            localStorage.setItem("userHandle", userData.user_handle);
+            localStorage.setItem("email", userData.email);
+
+            history.push("/dashboard");
+          }
         }
       } catch (error) {
         console.error("Error logging in:", error);
-        setbg("red")
-        setmsg("Invalid Credentials !")
+        setbg("red");
+        setmsg("Invalid Credentials !");
       }
     } else {
       alert("Invalid email format.");

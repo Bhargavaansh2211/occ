@@ -1,89 +1,73 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import EventListItem from "./EventListItem";
 import EventFilters from "./EventFilters";
 import { Link } from "react-router-dom";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios"; 
 import Header from "./header";
+
 const DashboardPage = () => {
-  const propsToPass = {
-    eventName: "Foss Weekend",
-    description: "Discover the power of open source at IIIT Lucknow's Foss Weekend! Join us for a dynamic event dedicated to exploring the world of Free and Open Source Software. Engage in workshops, discussions, and hand-on activities led industry experts. Immerse yourself in a weekend of learning, collab, and community building.",
-    startTime: "10:00",
-    endTime: "17:00",
-    eventId: 1,
-    startDate: "27-04-2024",
-    endDate: "28-04-2024",
-    venue: "Room 120, IIIT Lucknow",
-    image:"/images/img5.jpeg",
-    status:1
-  };
-  const propsToPass1 = {
-    eventName: "HackOFiesta",
-    description:"Join us for an exhilarating hackathon organized by IIIT Lucknow. Unleash your creativity, problem-solving skills, Whether you're a seasoned coder or a newcomer to the world of programming, this event offers a platform to innovate, learn, and network. Get ready to dive into a 48-hour marathon of coding, ideation, and teamwork, where your ingenuity has the power to shape the future.",
-    startTime: "18:00",
-    endTime: "06:00",
-    eventId: 2,
-    startDate: "29-04-2024",
-    endDate: "01-05-2024",
-    venue: "Admin Block, IIIT Lucknow",
-    image:"/images/hof.png",
-    status:1
-  };
+  
 
-  const propsToPassPst = {
-    eventName: "Infinito",
-    description:"Join us for 'Infinito,' an electrifying event organized by IIIT Lucknow, where sports enthusiasts converge to celebrate a diverse array of athletic competitions, including esports. Experience the thrill of competition, and sportsmanship as participants showcase their skills. From traditional sports to cutting-edge esports, 'Infinito' offers a platform for players of all levels.",
-    startTime: "08:00",
-    endTime: "16:00",
-    eventId: 1,
-    startDate: "21-03-2024",
-    endDate: "27-03-2024",
-    venue: "Football Ground, IIIT Lucknow",
-    image:"/images/infinito.jpeg",
-    status:0
-  };
+  const [events, setEvents] = useState([]);
 
-  const propsToPassPst1 = {
-    eventName: "Equinox",
-    description:"Join us for 'Equinox', an Techno-Cultural event organized by IIIT Lucknow, where developers , hackers, coding enthusiasts converge to celebrate a diverse array of their knowledge, skills, networks. Experience the thrill of competition, and students as participants showcase their skills. From Machine Learning, App and Web Dev and Infosec, 'Equinox' offers a platform for developers of all levels.",
-    startTime: "08:00",
-    endTime: "16:00",
-    eventId: 1,
-    startDate: "01-02-2024",
-    endDate: "07-02-2024",
-    venue: "Reception, IIIT Lucknow",
-    image:"/images/equinox.jpg",
-    status:0
-  };
-  const propsToPassPst2 = {
-    eventName: "Enspire",
-    description:"Join us for 'Enspire,' an electrifying event organized by IIIT Lucknow, where sports enthusiasts converge to celebrate a diverse array of athletic competitions, including esports. Experience the thrill of competition, and sportsmanship as participants showcase their skills. From traditional sports to cutting-edge esports, 'Infinito' offers a platform for players of all levels.",
-    startTime: "08:00",
-    endTime: "16:00",
-    eventId: 1,
-    startDate: "21-01-2024",
-    endDate: "23-01-2024",
-    venue: "Near Wifi Garden, IIIT Lucknow",
-    image:"/images/enspire.png",
-    status:0
-  };
+  useEffect(() => {
+    fetch("http://localhost:8080/event/")
+      .then((response) => response.json())
+      .then((data) => setEvents(data))
+      .catch((error) => console.error("Error fetching events:", error));
+  }, []);
+
+  
+  const pastEvents = events.filter((event) => new Date(event.start_date) < new Date());
+
+  
+  const upcomingEvents = events.filter((event) => new Date(event.start_date) >= new Date());
 
   return (
     <div>
       <Header />
-      <EventFilters />
+      
       <div className="card">
         <h1 className="headevent">Upcoming Events</h1>
-        <div className="blog-card event-list-item-container" style={{marginTop:'30px'}}>
-          <EventListItem {...propsToPass} />
-          <EventListItem {...propsToPass1} />
+        <div className="blog-card event-list-item-container" style={{ marginTop: '30px' }}>
+          {upcomingEvents.map((event) => (
+            <EventListItem
+              key={event.eventId}
+              
+              eventID={event.eventId} 
+              eventName={event.title}
+              description={event.description}
+              startTime={event.start_time}
+              endTime={event.end_time}
+              startDate={event.start_date}
+              endDate={event.end_date}
+              venue={event.venue}
+              image={event.image}
+              status={event.status}
+              
+            />
+          ))}
         </div>
         <h1 className="headevent">Past Events</h1>
-        <div className="blog-card event-list-item-container" style={{marginTop:'20px'}}>
-          <EventListItem {...propsToPassPst}/>
-          <EventListItem {...propsToPassPst1}/>
-          <EventListItem {...propsToPassPst2} />
+        <div className="blog-card event-list-item-container" style={{ marginTop: '20px' }}>
+          {pastEvents.map((event) => (
+            <EventListItem
+              key={event.eventId}
+             
+              eventID={event.eventId} 
+              eventName={event.title}
+              description={event.description}
+              startTime={event.start_time}
+              endTime={event.end_time}
+              startDate={event.start_date}
+              endDate={event.end_date}
+              venue={event.venue}
+              image={event.image}
+              status={event.status}
+            />
+          ))}
         </div>
         <Link to="/add" className="button-floating">
           <button>

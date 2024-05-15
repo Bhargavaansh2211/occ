@@ -18,7 +18,7 @@ const EventFilters = () => {
     <div className="input-group">
       <div className="input-group__item">
         <input
-          type="text"
+          type="search"
           placeholder="Search events"
           value={textFilter}
           onChange={handleTextFilterChange}

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import axios from "axios"; // Import axios for making HTTP requests
+import axios from "axios"; 
 import isEmail from "validator/lib/isEmail";
 import { Tilt } from "react-tilt";
 import { Link } from "react-router-dom";
@@ -39,16 +39,40 @@ export const SignupPage = () => {
         email,
         password,
       };
-
+  
       try {
         const response = await axios.post(
           "http://localhost:8080/auth/register",
           credentials
         );
+  
         
+        const mailDetails = {
+          recipient: email,
+          msgBody: `Hello ${name},
+        
+        Welcome to Occasionly, your go-to platform for exploring and participating in exciting events happening around your college campus! 🎉
+        
+        We're thrilled to have you join our vibrant community of event enthusiasts. Whether you're into academic seminars, cultural festivals, sports competitions, or social gatherings, Occasionly has something for everyone.
+        
+        Here's what you can expect from Occasionly:
+        
+        1. Discover a diverse range of events: Explore an extensive list of upcoming events, including workshops, hackathons, music concerts, art exhibitions, and much more. With our intuitive platform, finding events that match your interests has never been easier.
+        
+        2. Seamless event registration: Sign up for events directly through Occasionly with just a few clicks. Say goodbye to long queues and paper forms – our streamlined registration process makes attending events hassle-free.
+        
+        3. Stay updated on the latest happenings
+        
+        Best regards,
+        The Occasionly Team`,
+          subject: "Welcome to Occasionly",
+        };
+        
+        await axios.post("http://localhost:8080/sendMail", mailDetails);
+  
         setMsg("Signed Up Successfully");
         console.log("signup success");
-        //setisSubmitted(!setisSubmitted);
+  
         setShowPostMessage(true);
       } catch (error) {
         console.error("Error signing up:", error);
@@ -59,6 +83,7 @@ export const SignupPage = () => {
       alert("Your password doesn't match! or your email is not correct");
     }
   };
+  
 
   return (
     <div
