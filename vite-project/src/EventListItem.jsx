@@ -2,20 +2,23 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { faCalendarAlt, faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios"; 
+import CsvDownloadButton from "react-json-to-csv";
+import axios from "axios";
 const EventListItem = (props) => {
   const [isRegistered, setIsRegistered] = useState(false);
   const [showRegistrationMessage, setShowRegistrationMessage] = useState(false);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [registrationError, setRegistrationError] = useState(false);
+  const [res, setRes] = useState(null);
   const imageUrl = `data:image/png;base64,${props.image}`;
   const startDate = props.startDate.slice(0, 10);
   const endDate = props.startDate.slice(0, 10);
   useEffect(() => {
     fetchRegistrationStatus();
+    seeParticipants();
   }, []);
-  const userID=localStorage.getItem("userID");
-  const email=localStorage.getItem("email");
+  const userID = localStorage.getItem("userID");
+  const email = localStorage.getItem("email");
 
   const fetchRegistrationStatus = async () => {
     try {
@@ -43,6 +46,23 @@ const EventListItem = (props) => {
     return () => clearTimeout(timeout);
   }, [showRegistrationMessage]);
 
+  const seeParticipants = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/event/registeredusers/${props.eventID}`
+      );
+      if (response.ok) {
+        const resp = await response.json();
+        setRes(resp);
+
+        console.log("Participants:", res);
+      } else {
+        console.error("Failed to fetch participants");
+      }
+    } catch (error) {
+      console.error("Error fetching participants:", error);
+    }
+  };
   const toggleRegistration = async () => {
     try {
       let endpoint;
@@ -71,8 +91,7 @@ const EventListItem = (props) => {
           setShowRegistrationMessage(true);
           const mailDetails = {
             recipient: email,
-            msgBody: 
-            `Hi there,
+            msgBody: `Hi there,
             You have successfully unregistered for ${props.eventName}, 
             Sorry to see you go.
           
@@ -82,15 +101,13 @@ const EventListItem = (props) => {
           };
 
           await axios.post("http://localhost:8080/sendMail", mailDetails);
-          
         } else {
           setIsRegistered(true);
           setRegistrationSuccess(true);
           setShowRegistrationMessage(true);
           const mailDetails = {
-            recipient: email ,
-            msgBody: 
-            `Hi there,
+            recipient: email,
+            msgBody: `Hi there,
             You have successfully registered for ${props.eventName}, the event starts on ${startDate} at ${props.startTime} 
             and ends on ${endDate} at ${props.endTime}.
             Hope to see you there at the event.
@@ -102,7 +119,6 @@ const EventListItem = (props) => {
 
           await axios.post("http://localhost:8080/sendMail", mailDetails);
         }
-        
       } else if (response.status === 400) {
         setShowRegistrationMessage(true);
         setRegistrationError(true);
@@ -155,6 +171,17 @@ const EventListItem = (props) => {
           </div>
 
           <div className="list-card__fab">
+            
+              <CsvDownloadButton
+                data={res}
+                filename="participants.csv"
+                delimiter=","
+                className="butreg"
+                style={{height:"50%",
+                  margin:"1rem"
+                }}
+              /> 
+            
             <button
               className={isRegistered ? "butunreg" : "butreg"}
               onClick={toggleRegistration}
