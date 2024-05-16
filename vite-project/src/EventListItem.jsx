@@ -16,14 +16,19 @@ const EventListItem = (props) => {
   useEffect(() => {
     fetchRegistrationStatus();
     seeParticipants();
-  }, []);
+  }, [isRegistered]);
   const userID = localStorage.getItem("userID");
   const email = localStorage.getItem("email");
 
   const fetchRegistrationStatus = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/event/registrationStatus/${userID}/${props.eventID}`
+        `http://localhost:8080/event/registrationStatus/${userID}/${props.eventID}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
       if (response.ok) {
         const data = await response.json();
@@ -46,10 +51,19 @@ const EventListItem = (props) => {
     return () => clearTimeout(timeout);
   }, [showRegistrationMessage]);
 
+  useEffect(() => {
+    
+    setIsRegistered(false);
+  }, []);
   const seeParticipants = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/event/registeredusers/${props.eventID}`
+        `http://localhost:8080/event/registeredusers/${props.eventID}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
       if (response.ok) {
         const resp = await response.json();
@@ -78,6 +92,7 @@ const EventListItem = (props) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({
           userId: userID,
@@ -87,6 +102,7 @@ const EventListItem = (props) => {
 
       if (response.ok) {
         if (isRegistered) {
+          setRegistrationSuccess(true);
           setIsRegistered(false);
           setShowRegistrationMessage(true);
           const mailDetails = {
@@ -100,7 +116,13 @@ const EventListItem = (props) => {
             subject: "Successfully unregistered",
           };
 
-          await axios.post("http://localhost:8080/sendMail", mailDetails);
+          await axios.post("http://localhost:8080/sendMail", mailDetails,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+          }
+          );
         } else {
           setIsRegistered(true);
           setRegistrationSuccess(true);
@@ -117,8 +139,13 @@ const EventListItem = (props) => {
             subject: "Successfully registered",
           };
 
-          await axios.post("http://localhost:8080/sendMail", mailDetails);
+          await axios.post("http://localhost:8080/sendMail", mailDetails, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          });
         }
+        
       } else if (response.status === 400) {
         setShowRegistrationMessage(true);
         setRegistrationError(true);
@@ -171,17 +198,14 @@ const EventListItem = (props) => {
           </div>
 
           <div className="list-card__fab">
-            
-              <CsvDownloadButton
-                data={res}
-                filename="participants.csv"
-                delimiter=","
-                className="butreg"
-                style={{height:"50%",
-                  margin:"1rem"
-                }}
-              /> 
-            
+            <CsvDownloadButton
+              data={res}
+              filename="participants.csv"
+              delimiter=","
+              className="butreg"
+              style={{ height: "50%", margin: "1rem" }}
+            />
+
             <button
               className={isRegistered ? "butunreg" : "butreg"}
               onClick={toggleRegistration}

@@ -43,7 +43,11 @@ const LoginPage = () => {
           localStorage.setItem("token", response.data);
 
           const userResponse = await axios.get(
-            `http://localhost:8080/user/getuser/${email}`
+            `http://localhost:8080/user/getuser/${email}`,{
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+              }
+            }
           );
 
           if (userResponse.status === 200) {

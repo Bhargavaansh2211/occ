@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import EventListItem from "./EventListItem";
-import EventFilters from "./EventFilters";
 import { Link } from "react-router-dom";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,7 +10,11 @@ const DashboardPage = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/event/")
+    fetch("http://localhost:8080/event/",{
+      headers:{
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
       .then((response) => response.json())
       .then((data) => setEvents(data))
       .catch((error) => console.error("Error fetching events:", error));

@@ -15,6 +15,7 @@ const Header = () => {
   const userH=localStorage.getItem("userHandle");
   const logout = () => {
     window.location.href = "/";
+    localStorage.clear();
   };
 
   return (
@@ -28,7 +29,7 @@ const Header = () => {
     </div>
     <div className="header__links">
       <input type="checkbox" id="toggler" />
-      {/* Wrap the menu content inside a label */}
+      
       <label htmlFor="toggler" id="hamburger">
         <div></div>
       </label>

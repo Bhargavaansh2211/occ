@@ -128,11 +128,18 @@ const EventForm = (props) => {
       console.log("start_time", endTime.toString().slice(16,21))
   
       try {
-        const response = await axios.post('http://localhost:8080/event/create', formData);
+        const response = await axios.post(
+          'http://localhost:8080/event/create',
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+          }
+        );
         setmsg("Event added successfully!");
         console.log("Event added successfully!");
         console.log(response.data);
-        //setisSubmitted(!setisSubmitted);
         setbg("rgba(0, 128, 0, 0.8)")
         setShowPostMessage(true);
       } catch (error) {
@@ -166,7 +173,7 @@ const EventForm = (props) => {
             onChange={onImageChange}
           />
           <button className="btn third" onClick={handleEditPicture} style={{color:'black'}}>
-            {props.event ? "edit image" : "add image"}
+             "add image"
           </button>
         </div>
         <form action="" onSubmit={onSubmit}>
@@ -221,7 +228,7 @@ const EventForm = (props) => {
                     selectsStart
                     startDate={startDate}
                     endDate={endDate}
-                    dateFormat="yyyy/MM/dd"
+                    dateFormat="dd/MM/yyyy"
                     placeholderText="Start Date"
                   />
                   <DatePicker
