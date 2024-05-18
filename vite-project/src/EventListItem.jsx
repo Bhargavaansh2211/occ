@@ -23,7 +23,7 @@ const EventListItem = (props) => {
   const fetchRegistrationStatus = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/event/registrationStatus/${userID}/${props.eventID}`,
+        `http://65.0.91.83:8080/event/registrationStatus/${userID}/${props.eventID}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -58,7 +58,7 @@ const EventListItem = (props) => {
   const seeParticipants = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/event/registeredusers/${props.eventID}`,
+        `http://65.0.91.83:8080/event/registeredusers/${props.eventID}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -82,10 +82,10 @@ const EventListItem = (props) => {
       let endpoint;
       let successMessage;
       if (isRegistered) {
-        endpoint = "http://localhost:8080/event/unregister";
+        endpoint = "http://65.0.91.83:8080/event/unregister";
         successMessage = "Successfully unregistered from the event!";
       } else {
-        endpoint = "http://localhost:8080/event/register";
+        endpoint = "http://65.0.91.83:8080/event/register";
       }
 
       const response = await fetch(endpoint, {
@@ -116,7 +116,7 @@ const EventListItem = (props) => {
             subject: "Successfully unregistered",
           };
 
-          await axios.post("http://localhost:8080/sendMail", mailDetails,
+          await axios.post("http://65.0.91.83:8080/sendMail", mailDetails,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -139,7 +139,7 @@ const EventListItem = (props) => {
             subject: "Successfully registered",
           };
 
-          await axios.post("http://localhost:8080/sendMail", mailDetails, {
+          await axios.post("http://65.0.91.83:8080/sendMail", mailDetails, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
@@ -188,7 +188,7 @@ const EventListItem = (props) => {
                   <FontAwesomeIcon icon={faCalendarAlt} />
                   {" " +
                     startDate +
-                    (endDate !== startDate ? " - " + endDate : "")}
+                    (endDate !== startDate ? " - " + endDate : "")+endDate}
                 </h6>
               </div>
               <div className="ven">

@@ -3,9 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   faPlus,
-  faBlog,
-  faBell,
-  faCommentAlt,
   faUserCircle,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";

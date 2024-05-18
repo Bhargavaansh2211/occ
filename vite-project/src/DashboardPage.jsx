@@ -10,7 +10,7 @@ const DashboardPage = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/event/",{
+    fetch("http://65.0.91.83:8080/event/",{
       headers:{
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }

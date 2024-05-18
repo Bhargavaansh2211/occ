@@ -129,7 +129,7 @@ const EventForm = (props) => {
   
       try {
         const response = await axios.post(
-          'http://localhost:8080/event/create',
+          'http://65.0.91.83:8080/event/create',
           formData,
           {
             headers: {
