@@ -1,8 +1,8 @@
- .box-layout a {
+ .bl a {
 	color:#f76c6c;
 	text-decoration:underline;
 }
-.box-layout__box {
+.bl__box {
 	grid-area:login;
 	display:flex;
 	padding:1rem;
@@ -17,20 +17,20 @@
 	transition:all 0.2s ease-in;
 }
 @media screen and (max-width:60rem) {
-	.box-layout__box {
+	.bl__box {
 		width:100vw;
 		height:100vh;
 		border-radius:0;
 	}
 }
-.box-layout__signup-box {
+.bl__signup-box {
 	background:#0b2646;
 	padding:3.2rem 1.6rem;
 	text-align:center;
 	width:40vw;
 	height:100vh;
 }
-.box-layout {
+.bl {
 	font-family:'Roboto',sans-serif;
 	background:white;
 	background-repeat:no-repeat;
@@ -42,13 +42,13 @@
 	opacity:0.95;
 }
 @media screen and (max-width:60rem) {
-	.box-layout__signup-box {
+	.bl__signup-box {
 		width:100vw;
 		height:100vh;
 		border-radius:0;
 	}
 }
-.box-layout__logo-outside {
+.bl__logo-outside {
 	grid-area:logo;
 	background:#2f3841;
 	background:url('/images/bg1.jpg') center;
@@ -63,16 +63,16 @@
 	width:62vw;
 }
 @media screen and (max-width:60rem) {
-	.box-layout__logo-outside {
+	.bl__logo-outside {
 		display:none;
 	}
 }
-.box-layout__logo-outside img {
+.bl__logo-outside img {
 	display:flex;
 	justify-content:center;
 	height:15rem;
 }
-.box-layout__logo-inside {
+.bl__logo-inside {
 	grid-area:logo;
 	display:flex;
 	flex-direction:column;
@@ -80,19 +80,19 @@
 	align-items:center;
 	margin:0;
 }
-.box-layout__logo-inside img {
+.bl__logo-inside img {
 	display:flex;
 	justify-content:center;
 	height:12rem;
 }
-.box-layout__title {
+.bl__title {
 	margin:0 0 1.2rem 0;
 	line-height:1;
 	color:#f76c6c;
 	font-size:4.8rem;
 }
 @media screen and (max-width:60rem) {
-	.box-layout__title {
+	.bl__title {
 		font-size:3.2rem;
 	}
 }
@@ -102,28 +102,28 @@
 	align-items:center;
 	justify-content:center;
 }
-.box-layout__subtitle {
+.bl__subtitle {
 	color:white;
 	font-size:2rem;
 	font-weight:500;
 	margin-bottom:1rem;
 }
 @media (max-width:60rem) {
-	.box-layout__subtitle {
+	.bl__subtitle {
 		position:absolute;
 		z-index:-1;
 		visibility:hidden;
 	}
 }
-.box-layout__input {
+.bl__input {
 	border-radius:3px;
 }
-.box-layout__question {
+.bl__question {
 	margin:2rem 0 0.5rem 0;
 	color:#edc7bc;
 	font-size:1.7rem;
 }
-.box-layout input {
+.bl input {
 	background:none;
 	display:block;
 	margin:3rem auto;
@@ -136,44 +136,44 @@
 	color:#edc7bc;
 	font-weight:200;
 }
-.box-layout input:focus::placeholder {
+.bl input:focus::placeholder {
 	color:transparent;
 }
 @media screen and (max-width:60rem) {
-	.box-layout input {
+	.bl input {
 		width:75vw;
 		margin:4rem auto;
 	}
 }
-.box-layout__signup-box input {
+.bl__signup-box input {
 	margin:2rem auto;
 }
-.box-layout__signin {
+.bl__signin {
 	display:flex;
 	margin:0 7rem;
 	justify-content:space-around;
 }
 @media screen and (max-width:60rem) {
-	.box-layout__signin {
+	.bl__signin {
 		margin:3rem 10vw 2rem 10vw;
 	}
 }
-.box-layout__signin button {
+.bl__signin button {
 	background:transparent;
 	border:none;
 	color:#f76c6c;
 	margin-bottom:1rem;
 }
-.box-layout__signin button:hover {
+.bl__signin button:hover {
 	color:#eb6e80;
 }
-.box-layout input:hover {
+.bl input:hover {
 	border:2px solid #edc7bc;
 }
-.box-layout input::placeholder {
+.bl input::placeholder {
 	color:#eb6e80;
 }
-.box-layout__login-form-title {
+.bl__login-form-title {
 	font-size:24px;
 	color:#333;
 	line-height:1.2;

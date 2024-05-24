@@ -87,22 +87,22 @@ export const SignupPage = () => {
 
   return (
     <div
-      className="box-layout"
+      className="bl"
       style={{ marginLeft: "-9px", marginBottom: "-15px" }}
     >
-      <div className="box-layout__logo-outside "></div>
+      <div className="bl__logo-outside "></div>
 
-      <div className="box-layout__signup-box">
-        <div className="box-layout__logo-inside">
+      <div className="bl__signup-box">
+        <div className="bl__logo-inside">
           <Tilt className="Tilt" options={{ max: 25 }}>
             <img src="images/logo.png" alt="" />
-            <h1 className="box-layout__title ">Occasionly</h1>
-            <h2 className="box-layout__subtitle">
+            <h1 className="bl__title ">Occasionly</h1>
+            <h2 className="bl__subtitle">
               Explore different activities held in IIIT
             </h2>
           </Tilt>
         </div>
-        <div className="box-layout__form">
+        <div className="bl__form">
           <form onSubmit={onStartSignUp}>
             <input
               type="text"
@@ -143,7 +143,7 @@ export const SignupPage = () => {
             )}
           </form>
 
-          <label className="box-layout__question ">
+          <label className="bl__question ">
             Already have an account?
           </label>
           <Link to="/">Login</Link>
