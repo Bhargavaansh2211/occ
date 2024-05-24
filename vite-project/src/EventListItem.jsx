@@ -2,17 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { faCalendarAlt, faClock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import moment from "moment-timezone";
 import CsvDownloadButton from "react-json-to-csv";
 import axios from "axios";
 const EventListItem = (props) => {
+  const formatDate = (dateString) => {
+    const date = moment.utc(dateString).local();
+    return date.format("DD-MM-YYYY");
+  };
+  const formatTime = (time) => {
+   if (time.length>5) time=time.slice(16,21);
+   return time;
+  };
   const [isRegistered, setIsRegistered] = useState(false);
   const [showRegistrationMessage, setShowRegistrationMessage] = useState(false);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [registrationError, setRegistrationError] = useState(false);
   const [res, setRes] = useState(null);
   const imageUrl = `data:image/png;base64,${props.image}`;
-  const startDate = props.startDate.slice(0, 10);
-  const endDate = props.startDate.slice(0, 10);
+  const startDate = formatDate(props.startDate);
+  const endDate = formatDate(props.endDate);
+  const startTime=formatTime(props.startTime)
+  const endTime=formatTime(props.endTime)
   useEffect(() => {
     fetchRegistrationStatus();
     seeParticipants();
@@ -23,7 +34,7 @@ const EventListItem = (props) => {
   const fetchRegistrationStatus = async () => {
     try {
       const response = await fetch(
-        `http://65.0.91.83:8080/event/registrationStatus/${userID}/${props.eventID}`,
+        `http://localhost:8080/event/registrationStatus/${userID}/${props.eventID}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -58,7 +69,7 @@ const EventListItem = (props) => {
   const seeParticipants = async () => {
     try {
       const response = await fetch(
-        `http://65.0.91.83:8080/event/registeredusers/${props.eventID}`,
+        `http://localhost:8080/event/registeredusers/${props.eventID}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -82,10 +93,10 @@ const EventListItem = (props) => {
       let endpoint;
       let successMessage;
       if (isRegistered) {
-        endpoint = "http://65.0.91.83:8080/event/unregister";
+        endpoint = "http://localhost:8080/event/unregister";
         successMessage = "Successfully unregistered from the event!";
       } else {
-        endpoint = "http://65.0.91.83:8080/event/register";
+        endpoint = "http://localhost:8080/event/register";
       }
 
       const response = await fetch(endpoint, {
@@ -116,7 +127,7 @@ const EventListItem = (props) => {
             subject: "Successfully unregistered",
           };
 
-          await axios.post("http://65.0.91.83:8080/sendMail", mailDetails,
+          await axios.post("http://localhost:8080/sendMail", mailDetails,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -139,7 +150,7 @@ const EventListItem = (props) => {
             subject: "Successfully registered",
           };
 
-          await axios.post("http://65.0.91.83:8080/sendMail", mailDetails, {
+          await axios.post("http://localhost:8080/sendMail", mailDetails, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
@@ -180,7 +191,7 @@ const EventListItem = (props) => {
               <div>
                 <h6>
                   <FontAwesomeIcon icon={faClock} />
-                  {" " + props.startTime + " - " + props.endTime}
+                  {" " + startTime + " - " + endTime}
                 </h6>
               </div>
               <div>
@@ -188,7 +199,7 @@ const EventListItem = (props) => {
                   <FontAwesomeIcon icon={faCalendarAlt} />
                   {" " +
                     startDate +
-                    (endDate !== startDate ? " - " + endDate : "")+endDate}
+                    (endDate !== startDate ? " - " + endDate : "")}
                 </h6>
               </div>
               <div className="ven">
@@ -219,7 +230,7 @@ const EventListItem = (props) => {
             </button>
             {showRegistrationMessage && (
               <div
-                className={`registration-message ${
+                className={`registration-message2 ${
                   registrationSuccess ? "success" : "error"
                 }`}
               >

@@ -1090,6 +1090,23 @@ a:visited {
 	z-index:999;
 	display:inline-block;
 }
+.registration-message2 {
+    position: absolute;
+    bottom: 570%; 
+    max-width: 140%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 128, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 999;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    text-align: center; 
+}
+
+
 .add-event {
 	position:absolute;
 	top:700px;

@@ -42,7 +42,7 @@ export const SignupPage = () => {
   
       try {
         const response = await axios.post(
-          "http://65.0.91.83:8080/auth/register",
+          "http://localhost:8080/auth/register",
           credentials
         );
   
@@ -68,7 +68,7 @@ export const SignupPage = () => {
           subject: "Welcome to Occasionly",
         };
         
-        await axios.post("http://65.0.91.83:8080/sendMail", mailDetails);
+        await axios.post("http://localhost:8080/sendMail", mailDetails);
   
         setMsg("Signed Up Successfully");
         console.log("signup success");
